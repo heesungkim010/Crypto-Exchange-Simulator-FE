@@ -8,5 +8,6 @@ public class SimulatorFeApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SimulatorFeApplication.class, args);
+		aa
 	}
 }
