@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            color:blue
+        }
+        /*
+            div {
+            width: 300px;
+            border: 15px double blue;
+            padding: 50px;
+            margin: 20px;
+            }   
+        */
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto;
+            background-color: #2196F3;
+            padding: 10px;
+        }
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        const positionUrl = 'http://127.0.0.1:8080/api/position/btc'
+        async function checkMember(url = positionUrl){
+            
+            const response = await fetch(url,
+            {
+                credentials: 'include'
+            }
+            )
+            const result = await response.json()
+
+            console.log(result.hasSession)
+            console.log(result)
+        }
+
+        /*simple request(get)
+        fetch('http://127.0.0.1:8080/api/members/prac')
+        .then(response => response.json())
+        .then(data => console.log(data));
+        */
+        async function postData(url = '') {
+            // Default options are marked with *
+
+            const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'include', // include, *same-origin, omit
+                headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify({})
+            });
+            //response.status === 200
+
+            return result;
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <h1 class = 'gg' id = 'id1'> hi </h1>
+    <div>hello</div>
+
+    <div class="grid-container">
+        <div class="grid-item" id = "price-info">  1  </div>
+    </div>
+
+    
+    <a href="index.html"><button class="button logoutButton" onclick="postData(logoutUrl)">Log Out</button></a>
+
+    <script>
+        const logoutUrl = 'http://127.0.0.1:8080/api/members/logout'
+        let didLogin = checkMember(url = 'http://127.0.0.1:8080/api/position/btc')
+        if(didLogin){
+            
+        }else{
+            
+        }
+        let socket = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@bookTicker");
+        socket.onopen = function(e) {
+        };
+        socket.onmessage = function(event) {
+            let message = event.data;
+            //console.log(message);
+        }
+
+    </script>
+</body>

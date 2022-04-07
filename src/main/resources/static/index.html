@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <script>
+        const loginUrl = 'http://127.0.0.1:8080/api/members/login'
+        /*simple request(get)
+        fetch('http://127.0.0.1:8080/api/members/prac')
+        .then(response => response.json())
+        .then(data => console.log(data));
+        */
+        async function postLogin(url = '', data = {}) {
+            // Default options are marked with *
+            //data = {"userId" : document.getElementById("userId").value, "password" : document.getElementById("password").value}
+
+            let result = await postData(url = url, data = data);
+            console.log("data", data)
+            console.log("result", result)
+            if(result.didLogin){
+                //window.location.href='trading_chart.html'
+            }else{ // login fail
+                //TODO : login fail
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1 id = 'id1'> Crypto Trading Simulator </h1>
+    <div>hello</div>
+
+    <input id="userId" placeholder="type id">
+    <input id="password" placeholder="type password" type="password">
+    <button class="button greenButton" onclick="postLogin(loginUrl, inputToJsonById(['userId', 'password']))">Login</button>
+
+    <a href="signup.html"><button class="button blueButton">Sign Up</button></a>
+    <a href="trading_chart.html"><button class="button orangeButton">Enter Without Login</button></a>
+</body>
